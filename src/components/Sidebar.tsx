@@ -1,37 +1,17 @@
 import React, { MouseEventHandler } from "react";
 import { IconType } from "react-icons";
-import { FaBars, FaBilibili, FaBoxArchive, FaCalendarCheck, FaGear, FaPaintRoller, FaPowerOff, FaUser } from "react-icons/fa6";
+import { FaBilibili, FaBoxArchive, FaCalendarCheck, FaGear, FaPaintRoller, FaPowerOff, FaUser } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   const [theme, setTheme] = React.useState<string>();
-  // const [mobileMode, setMobileMode] = React.useState<boolean>();
-  const [sidebarVisible, setSidebarVisible] = React.useState<boolean>();
-  const [dynamicSidebarClass, setDynamicSidebarClass] = React.useState('');
-  const [width, setWidth] = React.useState(window.innerWidth);
 
   React.useEffect(() => {
     const thm = window.localStorage.getItem("theme");
     if (thm === 'dark') {
       setTheme('dark');
     }
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
   }, []);
-
-  React.useEffect(() => {
-    setSidebarVisible(width >= 640);
-    // setMobileMode(width < 640); 
-  }, [width]);
-
-  React.useEffect(() => {
-    setDynamicSidebarClass(sidebarVisible ? 'ml-0' : '-ml-64');
-  }, [sidebarVisible]);
 
   React.useEffect(() => {
     if (theme === 'dark') {
@@ -43,26 +23,19 @@ function Sidebar() {
     }
   }, [theme]);
 
-  const toggleSidbar = () => {
-    setSidebarVisible(!sidebarVisible);
-  };
-
   const toggleTheme = () => {
     setTheme((thm) => { return thm === 'light' ? 'dark' : 'light' });
   };
 
   return (
     <>
-      <div className="flex h-full">
-        <div className={`bg-slate-100 dark:bg-slate-700 dark:divide-slate-800 p-2 flex flex-col gap-3 transition-all divide-y w-64 ${dynamicSidebarClass}`}>
+      <div className="flex">
+        <div className="min-w-full min-h-screen bg-slate-100 dark:bg-slate-700 dark:divide-slate-800 p-2 flex flex-col gap-3 transition-all divide-y">
           <div className="flex">
             <NavLink to="/" className="text-center text-xl font-semibold flex items-center mx-auto py-3 gap-3 hover:underline">
               <FaBilibili />
               Cool React App
             </NavLink>
-            {sidebarVisible &&
-            <button className={`transition-all`} type="button" onClick={toggleSidbar}> <FaBars /> </button>
-            }
           </div>
           <div>
             <SidebarSection text='Configure' />
@@ -80,9 +53,6 @@ function Sidebar() {
             <SidebarItem text='Toggle Theme' icon={FaPaintRoller} onClick={toggleTheme} />
           </div>
         </div>
-        {(!sidebarVisible) &&
-         <button className="self-start transition-all absolute top-2 left-2" type="button" onClick={toggleSidbar}> <FaBars /> </button>
-         }
       </div>
     </>
   )
