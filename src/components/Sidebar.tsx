@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   const [theme, setTheme] = React.useState<string>();
-  const [mobileMode, setMobileMode] = React.useState<boolean>();
+  // const [mobileMode, setMobileMode] = React.useState<boolean>();
   const [sidebarVisible, setSidebarVisible] = React.useState<boolean>();
   const [dynamicSidebarClass, setDynamicSidebarClass] = React.useState('');
   const [width, setWidth] = React.useState(window.innerWidth);
@@ -26,7 +26,7 @@ function Sidebar() {
 
   React.useEffect(() => {
     setSidebarVisible(width >= 640);
-    setMobileMode(width < 640); 
+    // setMobileMode(width < 640); 
   }, [width]);
 
   React.useEffect(() => {
