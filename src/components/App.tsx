@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
-import Sidebar from "./Sidebar"
 import Home from "./Home"
+import Sidebar from "./Sidebar"
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <div className="shrink-0">
         <Sidebar />
       </div>
-      <div className="flex-auto">
+      <div className="flex-auto shrink-0">
         <Routes>
           <Route index Component={Home} />
         </Routes>
