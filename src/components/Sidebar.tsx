@@ -21,7 +21,7 @@ function SidebarSection(props: { text: string }) {
 interface SidebarItemProps {
   text: string;
   icon: IconType;
-  onClick: MouseEventHandler;
+  onClick?: MouseEventHandler;
   classNames?: string;
 }
 
@@ -42,17 +42,13 @@ function SidebarItem(props: SidebarItemProps) {
 
 SidebarItem.defaultProps = {
   classNames: '',
+  onClick: null,
 };
 
 function Sidebar() {
-  const [theme, setTheme] = React.useState<string>();
-
-  React.useEffect(() => {
-    const thm = window.localStorage.getItem('theme');
-    if (thm === 'dark') {
-      setTheme('dark');
-    }
-  }, []);
+  const [theme, setTheme] = React.useState<string>(
+    window.localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'
+  );
 
   React.useEffect(() => {
     if (theme === 'dark') {
@@ -84,27 +80,9 @@ function Sidebar() {
         </div>
         <div>
           <SidebarSection text="Configure" />
-          <SidebarItem
-            text="App Settings"
-            icon={FaGear}
-            onClick={() => {
-              return false;
-            }}
-          />
-          <SidebarItem
-            text="Products"
-            icon={FaBoxArchive}
-            onClick={() => {
-              return false;
-            }}
-          />
-          <SidebarItem
-            text="Services"
-            icon={FaCalendarCheck}
-            onClick={() => {
-              return false;
-            }}
-          />
+          <SidebarItem text="App Settings" icon={FaGear} />
+          <SidebarItem text="Products" icon={FaBoxArchive} />
+          <SidebarItem text="Services" icon={FaCalendarCheck} />
         </div>
         <div>
           <SidebarSection text="account" />
@@ -118,10 +96,7 @@ function Sidebar() {
           <SidebarItem
             text="Log Out"
             icon={FaPowerOff}
-            onClick={() => {
-              return false;
-            }}
-            classNames="text-white bg-red-500 dark:bg-red-600 hover:bg-red-600 dark:hover:bg-red-800"
+            classNames="text-white bg-red-500 dark:bg-red-600 hover:bg-red-700 dark:hover:bg-red-700"
           />
         </div>
         <div className="">

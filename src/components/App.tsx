@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaBars } from 'react-icons/fa6';
+import { FaChevronLeft } from 'react-icons/fa6';
 import { Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import Sidebar from './Sidebar';
@@ -33,18 +33,24 @@ function App() {
       <div
         className={`absolute transition-all ${isMobile ? 'w-screen' : 'w-64'}`}
       >
-        <div className={`transition-all ${sidebarVisible ? '' : 'hidden'}`}>
+        <div
+          className={`transition-all ${
+            sidebarVisible ? '' : '-translate-x-full'
+          }`}
+        >
           <Sidebar />
         </div>
         <button
           type="button"
-          className={`absolute top-6 left-3 ${isMobile ? '' : 'hidden'}`}
+          className={`absolute top-6 left-3 transition-all ${
+            sidebarVisible ? '' : 'rotate-180'
+          }`}
           onClick={toggleSidbar}
         >
-          <FaBars />
+          <FaChevronLeft />
         </button>
       </div>
-      <div className={`${isMobile ? '' : 'ml-64'}`}>
+      <div className={`${!sidebarVisible || isMobile ? '' : 'ml-64'}`}>
         <Routes>
           <Route index Component={Home} />
         </Routes>
