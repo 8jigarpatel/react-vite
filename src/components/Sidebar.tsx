@@ -14,7 +14,9 @@ import { NavLink } from 'react-router-dom';
 function SidebarSection(props: { text: string }) {
   const { text } = props;
   return (
-    <div className="text-xs uppercase font-bold pt-2 opacity-40">{text}</div>
+    <div className="text-xs border-t-2 border-slate-200 dark:border-slate-600 uppercase font-bold pt-2 opacity-40">
+      {text}
+    </div>
   );
 }
 
@@ -68,7 +70,7 @@ function Sidebar() {
 
   return (
     <div className="flex">
-      <div className="min-w-full min-h-screen bg-slate-100 dark:bg-slate-700 dark:divide-slate-800 p-2 flex flex-col gap-3 transition-all divide-y">
+      <div className="min-w-full min-h-screen bg-slate-100 dark:bg-slate-700 p-2 flex flex-col gap-3 transition-all">
         <div className="flex">
           <NavLink
             to="/"
@@ -77,6 +79,16 @@ function Sidebar() {
             <FaBilibili />
             Cool React App
           </NavLink>
+        </div>
+        <div>
+          <SidebarSection text="New" />
+          <SidebarItem text="Product" icon={FaBoxArchive} />
+          <SidebarItem text="Service" icon={FaCalendarCheck} />
+        </div>
+        <div>
+          <SidebarSection text="Search" />
+          <SidebarItem text="Products" icon={FaBoxArchive} />
+          <SidebarItem text="Services" icon={FaCalendarCheck} />
         </div>
         <div>
           <SidebarSection text="Configure" />
@@ -106,6 +118,9 @@ function Sidebar() {
             icon={FaPaintRoller}
             onClick={toggleTheme}
           />
+        </div>
+        <div className="bottom-0 text-center opacity-25 text-sm">
+          version: v0.1
         </div>
       </div>
     </div>
