@@ -29,7 +29,7 @@ function App() {
   };
 
   return (
-    <div className="container max-w-full h-screen flex dark:text-white dark:bg-slate-600">
+    <div className="dark:text-white dark:bg-slate-600 container max-w-full h-screen flex">
       <div
         className={`absolute transition-all ${isMobile ? 'w-screen' : 'w-64'}`}
       >
@@ -50,7 +50,11 @@ function App() {
           <FaChevronLeft />
         </button>
       </div>
-      <div className={`w-screen ${!sidebarVisible || isMobile ? '' : 'ml-64'}`}>
+      <div
+        className={`transition-all flex-auto ${
+          !sidebarVisible || isMobile ? '' : 'ml-64'
+        }`}
+      >
         <Routes>
           <Route index Component={Home} />
         </Routes>
