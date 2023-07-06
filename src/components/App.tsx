@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaChevronLeft } from 'react-icons/fa6';
+import { FaBars, FaChevronLeft } from 'react-icons/fa6';
 import { Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import Sidebar from './Sidebar';
@@ -20,8 +20,8 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    setSidebarVisible(width >= 640);
-    setIsMobile(width < 640);
+    setSidebarVisible(width >= 768);
+    setIsMobile(width < 768);
   }, [width]);
 
   const toggleSidbar = () => {
@@ -47,7 +47,8 @@ function App() {
           }`}
           onClick={toggleSidbar}
         >
-          <FaChevronLeft />
+          {sidebarVisible && <FaChevronLeft />}
+          {!sidebarVisible && <FaBars />}
         </button>
       </div>
       <div
