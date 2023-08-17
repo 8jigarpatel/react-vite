@@ -34,9 +34,13 @@ function Card(props: CardProps) {
   }
 
   return (
-    <div className="text-black bg-white shadow-lg rounded-lg p-2 w-44 h-64 border border-gray-300">
+    <div
+      className={`text-black bg-white shadow-lg rounded-lg p-2 w-44 h-64 border border-gray-300 fixed ${
+        suite === 's' || suite === 'c' ? 'text-black' : 'text-red-500'
+      }`}
+    >
       <div className="flex flex-col items-center gap-1 max-w-fit">
-        <div className="text-3xl font-bold">{rank}</div>
+        <div className="text-2xl font-bold">{rank}</div>
         <div className="text-3xl font-bold">
           <SuiteIcon />
         </div>

@@ -51,7 +51,7 @@ function App() {
       </div>
       <button
         type="button"
-        className={`fixed top-6 border-2 rounded p-0.5 left-2 transition-transform ${
+        className={`fixed z-10 top-6 border-2 rounded p-0.5 left-2 transition-transform ${
           sidebarVisible ? '' : 'rotate-180'
         }`}
         onClick={toggleSidbar}
