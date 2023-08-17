@@ -117,13 +117,14 @@ function Hangman() {
       <div className="sm:max-w-sm md:max-w-md lg:max-w-3xl">
         <div>
           {playing === false && (
-            <div className="grid grid-cols-6 gap-4 px-2">
-              <div className="text-center font-mono tracking-widest col-span-5">
+            <div className="flex gap-4 px-2">
+              <div className="text-center font-mono tracking-widest flex-1">
                 {secret}
               </div>
               <button
                 type="button"
-                className="btn bg-green-600 text-white rounded"
+                className="btn bg-green-600 text-white rounded disabled:bg-green-400"
+                disabled={!secret}
                 onClick={onSetSecretClick}
               >
                 <HiPlay className="py-2 text-white" />
@@ -131,8 +132,8 @@ function Hangman() {
             </div>
           )}
           {playing === true && (
-            <div className="grid grid-cols-6 gap-4 px-2">
-              <div className="text-center font-mono tracking-widest col-span-5">
+            <div className="flex gap-4 px-2">
+              <div className="text-center font-mono tracking-widest flex-1">
                 {guess}
               </div>
               <button
