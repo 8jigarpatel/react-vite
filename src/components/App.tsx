@@ -1,8 +1,12 @@
 import React from 'react';
+
 import { FaBars, FaChevronLeft } from 'react-icons/fa6';
 import { Route, Routes } from 'react-router-dom';
+
+import Hand from './Cards/Hand';
+import Hangman from './Hangman';
 import Home from './Home';
-import Sidebar from './Sidebar';
+import Sidebar from './Sidebar/Sidebar';
 
 function App() {
   const [sidebarVisible, setSidebarVisible] = React.useState<boolean>();
@@ -29,12 +33,10 @@ function App() {
   };
 
   return (
-    <div className="dark:text-white dark:bg-slate-600 container max-w-full h-screen flex">
-      <div
-        className={`absolute transition-all ${isMobile ? 'w-screen' : 'w-64'}`}
-      >
+    <div className="dark:text-white dark:bg-slate-600 container max-w-full min-h-screen h-100 flex">
+      <div className={`fixed ${isMobile ? 'w-screen' : 'w-64'}`}>
         <div
-          className={`transition-all ${
+          className={`transition-transform ${
             sidebarVisible ? '' : '-translate-x-full'
           }`}
         >
@@ -42,7 +44,7 @@ function App() {
         </div>
         <button
           type="button"
-          className={`absolute top-6 left-3 transition-all ${
+          className={`absolute top-6 border-2 rounded p-0.5 left-2 transition-transform ${
             sidebarVisible ? '' : 'rotate-180'
           }`}
           onClick={toggleSidbar}
@@ -52,12 +54,14 @@ function App() {
         </button>
       </div>
       <div
-        className={`transition-all flex-auto ${
-          !sidebarVisible || isMobile ? '' : 'ml-64'
+        className={`flex-auto ${
+          !sidebarVisible || isMobile ? 'ml-0' : 'ml-64'
         }`}
       >
         <Routes>
-          <Route index Component={Home} />
+          <Route path="/" element={<Home />} />
+          <Route path="/cards" element={<Hand />} />
+          <Route path="/hangman" element={<Hangman />} />
         </Routes>
       </div>
     </div>
