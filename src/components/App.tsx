@@ -42,16 +42,9 @@ function App() {
 
   return (
     <div className="dark:text-white dark:bg-slate-600 container max-w-full min-h-screen h-100 flex">
-      <div
-        className={`transition-transform fixed
-          ${isMobile ? 'w-screen' : 'w-64'}
-          ${sidebarVisible ? '' : '-translate-x-full'}`}
-      >
-        <Sidebar />
-      </div>
       <button
         type="button"
-        className={`fixed z-10 top-6 border-2 rounded p-0.5 left-2 transition-transform ${
+        className={`fixed z-20 top-6 border-2 rounded p-0.5 left-2 transition-transform ${
           sidebarVisible ? '' : 'rotate-180'
         }`}
         onClick={toggleSidbar}
@@ -60,7 +53,14 @@ function App() {
         {!sidebarVisible && <FaBars />}
       </button>
       <div
-        className={`flex-auto ${
+        className={`transition-transform fixed z-10
+          ${isMobile ? 'w-screen' : 'w-64'}
+          ${sidebarVisible ? '' : '-translate-x-full'}`}
+      >
+        <Sidebar />
+      </div>
+      <div
+        className={`flex-auto z-0 ${
           !sidebarVisible || isMobile ? 'ml-0' : 'ml-64'
         }`}
       >

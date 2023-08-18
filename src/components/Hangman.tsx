@@ -117,7 +117,7 @@ function Hangman() {
       <div className="sm:max-w-sm md:max-w-md lg:max-w-3xl">
         <div>
           {playing === false && (
-            <div className="flex gap-4 px-2">
+            <div className="flex gap-4 px-2 h-10 lg:h-16">
               <div className="text-center font-mono tracking-widest flex-1">
                 {secret}
               </div>
@@ -132,7 +132,7 @@ function Hangman() {
             </div>
           )}
           {playing === true && (
-            <div className="flex gap-4 px-2">
+            <div className="flex gap-4 px-2 h-10 lg:h-16">
               <div className="text-center font-mono tracking-widest flex-1">
                 {guess}
               </div>
